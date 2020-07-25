@@ -101,10 +101,10 @@ class CampaignsController extends Controller
 	    if( $this->request->hasFile('photo') )	{
 
 			$extension    = $this->request->file('photo')->getClientOriginalExtension();
-			$file_large     = strtolower(Auth::user()->id.time().str_random(40).'.'.$extension);
-			$file_small     = strtolower(Auth::user()->id.time().str_random(40).'.'.$extension);
+			$file_large     = strtolower('ilarge_'.Auth::user()->id.'_'.time().'_'.str_random(20).'.'.$extension);
+			$file_small     = strtolower('ismall_'.Auth::user()->id.'_'.time().'_'.str_random(20).'.'.$extension);
 
-			if( $this->request->file('photo')->move($temp, $file_large) ) {
+			if($this->request->file('photo')->move($temp, $file_large) ) {
 
 				set_time_limit(0);
 
@@ -119,10 +119,10 @@ class CampaignsController extends Controller
 
 				if ( $width > $max_width ) {
 					$scale = $max_width / $width;
-					$uploaded = Helper::resizeImage( $temp.$file_large, $width, $height, $scale, $temp.$file_large );
+					$uploaded = Helper::resizeImage($temp.$file_large, $width, $height, $scale, $temp.$file_large );
 				} else {
 					$scale = 1;
-					$uploaded = Helper::resizeImage( $temp.$file_large, $width, $height, $scale, $temp.$file_large );
+					$uploaded = Helper::resizeImage($temp.$file_large, $width, $height, $scale, $temp.$file_large );
 				}
 
 				//=============== Small Large =================//
@@ -141,7 +141,6 @@ class CampaignsController extends Controller
 					\File::copy($temp.$file_large, $path_large.$file_large);
 					\File::delete($temp.$file_large);
 				}//<--- IF FILE EXISTS
-
 			}
 
 			$image_small  = $file_small;

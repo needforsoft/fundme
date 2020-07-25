@@ -188,9 +188,12 @@ $("#filePhoto").on('change', function(){
 	var loaded = false;
 	if(window.File && window.FileReader && window.FileList && window.Blob){
 		if($(this).val()){ //check empty input filed
-			oFReader = new FileReader(), rFilter = /^(?:image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/png|image)$/i;
-			if($(this)[0].files.length === 0){return}
+		
+			oFReader = new FileReader(); 
+			rFilter = /^(?:image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/png|image)$/i;
 			
+			if($(this)[0].files.length === 0)
+				return
 			
 			var oFile = $(this)[0].files[0];
 			var fsize = $(this)[0].files[0].size; //get file size
@@ -244,7 +247,10 @@ $("#filePhoto").on('change', function(){
 			
 		}
 	} else{
-		$('.popout').html('Can\'t upload! Your browser does not support File API! Try again with modern browsers like Chrome or Firefox.').fadeIn(500).delay(5000).fadeOut();
+		$('.popout').html('Can\'t upload! Your browser does not support File API! Try again with modern browsers like Chrome or Firefox.')
+		.fadeIn(500)
+		.delay(5000)
+		.fadeOut();
 		return false;
 	}
 });

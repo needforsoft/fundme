@@ -38,13 +38,22 @@
 <body>
 
 	<div id="fb-root"></div>
-<script>(function(d, s, id) {
+
+<script>
+(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
+
+  if (d.getElementById(id)) 
+  return;
+
+  js = d.createElement(s); 
+  js.id = id;
+
   js.src = "//connect.facebook.net/{{config('fb_app.lang')}}/sdk.js#xfbml=1&version=v2.8&appId={{config('fb_app.id')}}";
+
   fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+}(document, 'script', 'facebook-jssdk'));
+</script>
 
 	<div class="popout font-default"></div>
 	<div class="wrap-loader">
@@ -65,7 +74,8 @@
 
 	Cookies.set('cookieBanner');
 
-		$(document).ready(function() {
+	$(document).ready(function() 
+	{
     if (Cookies('cookieBanner'));
     else {
     	$('.showBanner').fadeIn();
