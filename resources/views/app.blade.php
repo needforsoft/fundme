@@ -1,22 +1,23 @@
 <?php $settings = App\Models\AdminSettings::first(); ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="description" content="@yield('description_custom'){{{ $settings->description }}}">
-    <meta name="keywords" content="{{{ $settings->keywords }}}" />
-    <link rel="shortcut icon" href="{{{ asset('public/img/favicon.png') }}}" />
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+	<meta name="description" content="@yield('description_custom'){{{ $settings->description }}}">
+	<meta name="keywords" content="{{{ $settings->keywords }}}" />
+	<link rel="shortcut icon" href="{{{ asset('public/img/favicon.png') }}}" />
 
 	<title>@section('title')@show @if( isset( $settings->title ) ){{{$settings->title}}}@endif</title>
 
 	@include('includes.css_general')
 
 	<!-- Fonts -->
-	<link href='//fonts.googleapis.com/css?family=Raleway:100,600' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Raleway:100,600' rel='stylesheet' type='text/css'>
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,19 +29,19 @@
 	@yield('css')
 
 	<!-- Scripts -->
-    <script>
-        window.Laravel = <?php echo json_encode([
+	<script>
+		window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>
-    </script>
+	</script>
 
 </head>
-<body>
 
+<body>
 	<div id="fb-root"></div>
 
-<script>
-(function(d, s, id) {
+	<script>
+		(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
 
   if (d.getElementById(id)) 
@@ -49,11 +50,14 @@
   js = d.createElement(s); 
   js.id = id;
 
-  js.src = "//connect.facebook.net/{{config('fb_app.lang')}}/sdk.js#xfbml=1&version=v2.8&appId={{config('fb_app.id')}}";
+  //js.src = "https://connect.facebook.net/{{config('fb_app.lang')}}/sdk.js#xfbml=1&version=v2.8&appId={{config('fb_app.id')}}";
+  js.src = "https://connect.facebook.net/{{config('fb_app.lang')}}/sdk.js#xfbml=1&autoLogAppEvents=1&version=v7.0&appId={{config('fb_app.id')}}";
 
   fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-</script>
+}
+
+(document, 'script', 'facebook-jssdk'));
+	</script>
 
 	<div class="popout font-default"></div>
 	<div class="wrap-loader">
@@ -62,17 +66,16 @@
 	</div>
 	@include('includes.navbar')
 
-		@yield('content')
+	@yield('content')
 
-			@include('includes.footer')
+	@include('includes.footer')
 
-		@include('includes.javascript_general')
+	@include('includes.javascript_general')
 
 	@yield('javascript')
 
 	<script type="text/javascript">
-
-	Cookies.set('cookieBanner');
+		Cookies.set('cookieBanner');
 
 	$(document).ready(function() 
 	{
@@ -87,6 +90,7 @@
 });
 	</script>
 
-<div id="bodyContainer"></div>
+	<div id="bodyContainer"></div>
 </body>
+
 </html>

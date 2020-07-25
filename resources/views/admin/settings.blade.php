@@ -156,19 +156,6 @@
                    </div>
                  </div><!-- /.box-body -->
 
-                 <!-- Start Box Body -->
-                <div class="box-body">
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">{{ trans('admin.currency_position') }}</label>
-                    <div class="col-sm-10">
-                      <select name="currency_position" class="form-control">
-                        <option @if( $settings->currency_position == 'left' ) selected="selected" @endif value="left">{{$settings->currency_symbol}}99 - {{trans('admin.left')}}</option>
-                        <option @if( $settings->currency_position == 'right' ) selected="selected" @endif value="right">99{{$settings->currency_symbol}} {{trans('admin.right')}}</option>
-                        </select>
-                    </div>
-                  </div>
-                </div><!-- /.box-body -->
-
                   <!-- Start Box Body -->
                   <div class="box-body">
                     <div class="form-group">

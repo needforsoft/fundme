@@ -3,8 +3,10 @@
 /vendor
 
 /public/hot
+/public/temp
 /public/storage
 /public/public/hot
+/public/public/temp
 /public/public/storage
 /public/public/campaigns
 

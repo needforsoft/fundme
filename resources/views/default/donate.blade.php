@@ -483,9 +483,15 @@ cardButton.addEventListener('click', function(ev) {
       if(result.error.type == 'invalid_request_error') {
 
           if(result.error.code == 'parameter_invalid_empty') {
-            $('.popout').addClass('popout-error').html('{{trans('admin.card_required_name_email')}}').fadeIn('500').delay('5000').fadeOut('500');
+			$('.popout').addClass('popout-error').html('{{trans('admin.card_required_name_email')}}')
+			.fadeIn('500'
+			).delay('5000')
+			.fadeOut('500');
           } else {
-            $('.popout').addClass('popout-error').html(result.error.message).fadeIn('500').delay('5000').fadeOut('500');
+			$('.popout').addClass('popout-error').html(result.error.message)
+			.fadeIn('500')
+			.delay('5000')
+			.fadeOut('500');
           }
       }
 

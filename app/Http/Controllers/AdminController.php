@@ -183,7 +183,6 @@ class AdminController extends Controller {
 		$sql->link_terms         = $request->link_terms;
 		$sql->link_privacy         = $request->link_privacy;
 		$sql->date_format         = $request->date_format;
-		$sql->currency_position   = $request->currency_position;
 		$sql->auto_approve_campaigns = $request->auto_approve_campaigns;
 		$sql->captcha                = $request->captcha;
 		$sql->email_verification = $request->email_verification;
@@ -287,6 +286,7 @@ class AdminController extends Controller {
 
 		$sql->currency_symbol  = $request->currency_symbol;
 		$sql->currency_code    = strtoupper($request->currency_code);
+		$sql->currency_position   = $request->currency_position;
 		$sql->fee_donation = $request->fee_donation;
 		$sql->save();
 

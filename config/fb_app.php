@@ -11,9 +11,9 @@ return array(
     */
 
      //<--- Facebook App ID
-    'id' => "APP_ID",
+    'id' => "306760210447904",
 
 	//<--- Language - Check available languages --->  https://github.com/akarve/facebook-locales-to-json/blob/master/data/FacebookLocales.xml
-    'lang' => "en_US",
+    'lang' => "az_Az",
 
 );
