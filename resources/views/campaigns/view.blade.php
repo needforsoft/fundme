@@ -569,8 +569,8 @@
 
 		@if( Auth::check() && isset($response->user()->id) && Auth::user()->id != $response->user()->id )
 		<div class="btn-block text-center">
-			<a href="{{url('report/campaign', $response->id)}}/{{$response->user()->id}}"><i
-					class="icon-warning myicon-right"></i> {{ trans('misc.report') }}</a>
+			<a href="{{url('report/campaign', $response->id)}}/{{$response->user()->id}}">
+				<i class="icon-warning myicon-right"></i> {{ trans('misc.report') }}</a>
 		</div>
 		@endif
 
@@ -584,7 +584,7 @@
 								aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 
 						<span class="btn-block margin-top-15 margin-bottom-15 text-center position-relative">
-							<img class="img-circle" src="{{url('public/avatar/',$response->user()->avatar)}}" width="80"
+							<img class="img-circle" src="{{url('public/avatar/', $response->user()->avatar)}}" width="80"
 								height="80">
 						</span>
 
@@ -650,10 +650,11 @@
 
 @section('javascript')
 <script type="text/javascript">
-	$("#embedCode,#url_campaign").click(function() {
-	var $this = $(this);
-    $this.select();
-		});
+	$("#embedCode,#url_campaign").click(function() 
+	{
+		var $this = $(this);
+		$this.select();
+	});
 
 textTruncate('#desc', ' {{trans("misc.view_more")}}');
 

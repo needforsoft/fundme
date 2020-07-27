@@ -64,6 +64,6 @@ return array(
 	'user_suspended'            =>      'This user has been suspended',
 	'registered'                =>      'Registered',
 	'dashboard'                 =>      'Dashboard',
-	'upload_new_services'       =>      'Upload Service',
+	'upload_new_services'       =>      'Upload Service'
 	
 );

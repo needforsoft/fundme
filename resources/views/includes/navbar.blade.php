@@ -1,7 +1,10 @@
 <?php
+use Illuminate\Support\Arr;
+
 $categoriesMenu = App\Models\Categories::where('mode','on')->orderBy('name')->take(6)->get();
 $categoriesTotal = App\Models\Categories::count();
 ?>
+
 
 <div class="btn-block text-center showBanner padding-top-10 padding-bottom-10" style="display:none;">
 	{{trans('misc.cookies_text')}} <button class="btn btn-sm btn-success"
@@ -42,7 +45,7 @@ $categoriesTotal = App\Models\Categories::count();
 
 				<li class="dropdown">
 					<a class="text-uppercase font-default" data-toggle="dropdown"
-						href="javascript:void(0);">{{ trans('misc.campaigns') }} 
+						href="javascript:void(0);">{{ trans('misc.campaigns') }}
 						<i class="ion-chevron-down margin-lft5"></i></a>
 
 					<!-- DROPDOWN MENU -->
@@ -85,6 +88,23 @@ $categoriesTotal = App\Models\Categories::count();
 					<a class="text-uppercase font-default" href="{{ url('page',$_page->slug) }}">{{ $_page->title }}</a>
 				</li>
 				@endforeach
+
+				@if(config("app.locales") != null)
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+						@lang("misc.".config("app.locales")[config("app.locale")]) 
+						<span class="caret"></span>
+					  </a>
+					<ul class="dropdown-menu">
+						@foreach(Arr::except(config("app.locales"), [config("app.locale")]) as $ulang => $ulang_desc)
+						<li>
+							<a class="dropdown-item"
+								href="{{ route('route-locale', ['user_lang' => $ulang, 'redirect_to' => url()->full()]) }}">@lang("misc.".$ulang_desc)</a>
+						</li>
+						@endforeach
+					</ul>
+				</li>
+				@endif
 
 				@if( Auth::check() )
 
@@ -140,7 +160,8 @@ $categoriesTotal = App\Models\Categories::count();
 					</ul><!-- DROPDOWN MENU -->
 				</li>
 
-				<li><a class="log-in custom-rounded" href="{{url('create/campaign')}}"
+				<li>
+					<a class="log-in custom-rounded" href="{{url('create/campaign')}}"
 						title="{{trans('misc.create_campaign')}}">
 						<i class="glyphicon glyphicon-edit"></i> <strong>{{trans('misc.create_campaign')}}</strong></a>
 				</li>

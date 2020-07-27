@@ -357,4 +357,10 @@ return array(
 	//<------------ Version 2.9 --------------->>
 	'campaign_deleted' => 'Campaign deleted',
 
+
+	//languages
+	"english" => "English",
+	"azerbaijani" => "Azerbaijani",
+	"russian" => "Russian"
+
 );

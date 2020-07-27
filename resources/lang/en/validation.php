@@ -116,6 +116,6 @@ return [
 
     'attributes' => [
       'agree_gdpr' => 'box I agree with the processing of personal data',
-    ],
+    ]
 
 ];

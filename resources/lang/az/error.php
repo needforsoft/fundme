@@ -30,6 +30,6 @@ return array(
 	"go_home"                   => "Əsas Səhifəyə geri dönün",
 
 	"error_required_mail" => "Error! E-poçtunuz tələb olunur, tətbiq parametrlərinə keçin və tətbiqimizi silib yenidən cəhd edin",
-	"mail_exists" => 'Error! Elektron poçt artıq başqa bir istifadəçi tərəfindən istifadə olunur.',
+	"mail_exists" => 'Error! Elektron poçt artıq başqa bir istifadəçi tərəfindən istifadə olunur.'
 
 );

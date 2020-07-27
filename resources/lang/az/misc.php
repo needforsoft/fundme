@@ -357,4 +357,8 @@ return array(
 	//<------------ Version 2.9 --------------->>
 	'campaign_deleted' => 'Kampaniya silindi',
 
+	//languages
+	"english" => "İngiliscə",
+	"azerbaijani" => "Azərbaycanca",
+	"russian" => "Rusca"
 );

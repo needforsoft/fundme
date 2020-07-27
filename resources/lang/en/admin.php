@@ -172,9 +172,4 @@ return array(
 	'bank_transfer_details' => 'Bank transfer details',
 	'bank_transfer_info' => 'Enter transfer number and data to confirm your payment...',
 	'card_required_name_email' => 'You must provide your name and email to process your donation with your card.'
-
-
-
-
-
 );

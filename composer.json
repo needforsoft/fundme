@@ -12,6 +12,7 @@
         "albertcht/invisible-recaptcha": "^1.9",
         "chumper/zipper": "1.0.x",
         "fideloper/proxy": "^4.0",
+        "illuminate/cookie": "^7.22",
         "intervention/image": "^2.5",
         "kingflamez/laravelrave": "^1.1",
         "laravel/cashier": "^10.2",

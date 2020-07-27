@@ -14,11 +14,30 @@
  | Index
  |-----------------------------------
  */
+
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Symfony\Component\Debug\Debug;
+
 Route::get('/', 'HomeController@index');
 
 Route::get('home', function(){
 	return redirect('/');
 });
+
+/*
+ |
+ |-----------------------------------
+ | Change language
+ |--------- -------------------------
+ */
+
+Route::get("/locale", function(Request $request)
+{
+   $redirectTo = $request->query("redirect_to") ?? "/";
+   return redirect()->to($redirectTo);
+})->name("route-locale")->middleware("locale");
 
 /*
  |

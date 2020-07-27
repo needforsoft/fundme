@@ -18,6 +18,6 @@ return [
     'sent' => 'Parolunuzu yenidən bərpa etmə linkini elektron poçtla göndərdik!',
     'token' => 'Bu parol sıfırlama etiketi etibarsızdır.',
     'user' => "Bu E-poçt ünvanında olan istifadəçi tapılmadı.",
-    'subject' => "Parolu Sıfırla.",
+    'subject' => "Parolu Sıfırla."
 
 ];

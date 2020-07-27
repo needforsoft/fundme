@@ -64,6 +64,6 @@ return array(
 	'user_suspended'            =>      'Bu istifadəçi dayandırılıb',
 	'registered'                =>      'Qeydiyyata alınıb',
 	'dashboard'                 =>      'İdarə paneli',
-	'upload_new_services'       =>      'Yeni Servis yüklə',
+	'upload_new_services'       =>      'Yeni Servis yüklə'
 	
 );

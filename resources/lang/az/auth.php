@@ -49,5 +49,5 @@ return array(
 	'pay_register'            =>      'Ödəniş edin və qeydiyyatdan keçin',
 	'success_account'         =>      'Hesabınız uğurla yaradıldı, zəhmət olmasa daxil olun',
 	'error_desc'              =>      'Whoops! Girişinizdə bəzi problemlər oldu.',
-	'error_logging'           =>      'Yazdığınız məlumatlar qeydlərimizə uyğun gəlmir.',
+	'error_logging'           =>      'Yazdığınız məlumatlar qeydlərimizə uyğun gəlmir.'
 );

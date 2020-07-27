@@ -49,5 +49,5 @@ return array(
 	'pay_register'            =>      'Pay and register',
 	'success_account'         =>      'Your account has been successfully created, Please log in',
 	'error_desc'              =>      'Whoops! There were some problems with your input.',
-	'error_logging'           =>      'These credentials do not match our records.',
+	'error_logging'           =>      'These credentials do not match our records.'
 );
