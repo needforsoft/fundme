@@ -30,5 +30,7 @@ return array(
 	"go_home"                   => "Go to home page",
 
 	"error_required_mail" => "Error! Your email is required, Go to app settings and delete our app and try again",
-	"mail_exists" => 'Error! the email is already in use by another user.'
+	"mail_exists" => 'Error! the email is already in use by another user.',
+
+	"currency_not_supported" => "Currency is not supported: :currency_code"
 );

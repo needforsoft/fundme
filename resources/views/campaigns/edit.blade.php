@@ -77,6 +77,16 @@
 				      <input type="number" min="1" class="form-control" name="goal" id="onlyNumber" value="{{ $data->goal }}" placeholder="10000">
 				    </div>
 				  </div>
+
+				  <div class="form-group">
+					<label>{{ trans('campaign.currency') }}</label>
+					<select name="campaign_currency" class="form-control">
+						@foreach( App\Models\Currency::all() as $curr )
+							<option @if( $curr->currency_code == $data->goal_currency_code ) selected="selected" @endif 
+								value="{{$curr->currency_code}}">{{ $curr->currency_code }} ({{$curr->currency_symbol}})</option>
+						@endforeach
+					</select>
+				</div>
                   
                   <!-- Start Form Group -->
                     <div class="form-group">
