@@ -34,6 +34,11 @@ class AppServiceProvider extends ServiceProvider
       App::setLocale($decryptedLang);
     }
 
+    if (Cookie::get("currency_code") !== null) {
+      $curr_code = Crypt::decrypt(Cookie::get("currency_code"), false);
+      config(["app.currency_code" => $curr_code]);
+    }
+
     Blade::withoutDoubleEncoding();
     Paginator::useBootstrapThree();
   }

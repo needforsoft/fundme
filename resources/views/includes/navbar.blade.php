@@ -3,6 +3,7 @@ use Illuminate\Support\Arr;
 
 $categoriesMenu = App\Models\Categories::where('mode','on')->orderBy('name')->take(6)->get();
 $categoriesTotal = App\Models\Categories::count();
+$settings = App\Models\AdminSettings::first();
 ?>
 
 
@@ -91,15 +92,42 @@ $categoriesTotal = App\Models\Categories::count();
 
 				@if(config("app.locales") != null)
 				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-						@lang("misc.".config("app.locales")[config("app.locale")]) 
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+						aria-expanded="false">
+						@lang("misc.".config("app.locales")[config("app.locale")])
 						<span class="caret"></span>
-					  </a>
+					</a>
 					<ul class="dropdown-menu">
 						@foreach(Arr::except(config("app.locales"), [config("app.locale")]) as $ulang => $ulang_desc)
 						<li>
 							<a class="dropdown-item"
-								href="{{ route('route-locale', ['user_lang' => $ulang, 'redirect_to' => url()->full()]) }}">@lang("misc.".$ulang_desc)</a>
+								href="{{ route('route-setLocale', ['user_lang' => $ulang, 'redirect_to' => url()->full()]) }}">@lang("misc.".$ulang_desc)</a>
+						</li>
+						@endforeach
+					</ul>
+				</li>
+				@endif
+
+				@if($settings->multi_currency_mode_enabled)
+				<?php
+					$curr_symbol = App\Models\Currency::find(config("app.currency_code"))->currency_symbol;
+					$all_currencies = App\Models\Currency::all();
+					//dd($all_currencies);
+				?>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+						aria-expanded="false">
+						@lang("campaign.currency"): {{ config("app.currency_code") }} ({{$curr_symbol}})
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						@foreach(Arr::where($all_currencies->toArray(), function($key, $value)
+						{
+							return array_get($value, "currency_code") != config("app.currency_code");
+						}) as $k => $v)
+						<li>
+							<a class="dropdown-item"
+								href="{{ route('route-setCurrency', ['currency_code' => array_get($v, 'currency_code'), 'redirect_to' => url()->full()]) }}">{{ array_get($v, 'currency_code') }} ({{array_get($v, 'currency_symbol')}})</a>
 						</li>
 						@endforeach
 					</ul>

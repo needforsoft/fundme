@@ -33,12 +33,17 @@ Route::get('home', function(){
  |--------- -------------------------
  */
 
-Route::get("/locale", function(Request $request)
+Route::get("/set-locale", function(Request $request)
 {
    $redirectTo = $request->query("redirect_to") ?? "/";
    return redirect()->to($redirectTo);
-})->name("route-locale")->middleware("locale");
+})->name("route-setLocale")->middleware("locale");
 
+Route::get("/set-currency", function(Request $request)
+{
+   $redirectTo = $request->query("redirect_to") ?? "/";
+   return redirect()->to($redirectTo);
+})->name("route-setCurrency")->middleware("currency");
 /*
  |
  |-----------------------------------
