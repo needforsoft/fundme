@@ -9,7 +9,7 @@
 		$slugUrl  = '/'.str_slug( $key->title );
 	}
 
-	$url = url('campaign',$key->id).$slugUrl;
+	$url = url('campaign', $key->id).$slugUrl;
 	$percentage = round($key->donations()->sum('donation') / $key->goal * 100);
 
   // Deadline
@@ -87,7 +87,7 @@
 
 				<span class="stats-campaigns">
 					<span class="pull-left">
-						<strong>{{App\Helper::amountFormat($key->donations()->sum('donation'))}}</strong>
+						<strong>{{App\Helper::amountFormat($key->donations()->sum('donation'), $key->goal_currency_code)}}</strong>
 						{{trans('misc.raised')}}
 					</span>
 					<span class="pull-right"><strong>{{$percentage }}%</strong></span>
@@ -100,7 +100,7 @@
 			</p>
 
 			<h6 class="margin-bottom-zero">
-				<em><strong>{{ trans('misc.goal') }} {{App\Helper::amountFormat($key->goal)}}</strong></em>
+				<em><strong>{{ trans('misc.goal') }} {{App\Helper::amountFormat($key->goal, $key->goal_currency_code)}}</strong></em>
 			</h6>
 
 		</div><!-- /caption -->

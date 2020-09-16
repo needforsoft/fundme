@@ -97,22 +97,22 @@ return array(
 	'registered_members'        =>      'Qeydiyyatdan keçmiş üzvlər',
 	'registered'                =>      'Qeydiyyatdan keçmiş',
 	'latest_members'            =>      'Ən son üzvlər',
-	'view_all_members'          =>      'Bütün üzvlərə baxın',
+	'view_all_members'          =>      'Bütün üzvlərə bax',
 	'images_uploads'          	=>      'Şəkillər son 30 gündə yüklənir',
 	'upgrade_done'              =>      'Yeniləmə tamamlandı',
 	'yearly'                    =>      'İllik',
-	'latest_images'           	=>      'Bu yaxınlarda əlavə olunmuş Şəkillər',
-	'view_all_images'         	=>      'Bütün şəkillərə baxın',
+	'latest_images'           	=>      'Bu yaxınlarda əlavə olunmuş şəkillər',
+	'view_all_images'         	=>      'Bütün şəkillərə bax',
 	'no_result'                 =>      'Heç bir nəticə tapılmadı',
 	'Image'                     =>      'Şəkil',
-    'actions'                   =>      'Hərəkətlər',
+    'actions'                   =>      'Əməliyyatlar',
     'save'                      =>      'Yadda saxla',
     'cancel'                    =>      'Ləğv et',
-    'edit'                		=> 		'Redaktə edin',
+    'edit'                		=> 		'Redaktə et',
     'delete'           			=> 		'Sil',
     'max_length_desc_category'  =>      'Maximum 100 simvol',
     'thumbnail'                 =>      'Thumbnail',
-    'thumbnail_desc'            =>      'Tövsiyə olunan ölçü 457 x 359 px',
+    'thumbnail_desc'            =>      'Tövsiyə olunan ölçü 457x359 px',
     'success_add_category' 		=> 		'Kateqoriya uğurla əlavə edildi!',
     'success_add'               => 		'Uğurla əlavə olundu',
     'general'                   =>      'Ümumi',
@@ -156,6 +156,7 @@ return array(
 	'i_agree_gdpr' => 'Şəxsi məlumatların emalı ilə razıyam',
 	'date_format' => 'Tarix Formatı',
 	'currency_position' => 'Valyuta mövqeyi',
+	'currency_symbol_position' => 'Valyuta mövqeyi',
 	'right' => 'Sağ',
 	'left' => 'Sol',
 
@@ -171,10 +172,9 @@ return array(
 	'bank_transfer_limit' => 'Bank köçürmə məlumatları 10 ilə 300 simvol arasında olmalıdır.',
 	'bank_transfer_details' => 'Bank köçürməsinin detalları',
 	'bank_transfer_info' => 'Ödənişinizi təsdiqləmək üçün köçürmə nömrəsini və məlumatları daxil edin...',
-	'card_required_name_email' => 'Kartınızla yardımı təstiq etmək üçün adınızı və e-poçtunuzu təqdim etməlisiniz.'
+	'card_required_name_email' => 'Kartınızla yardımı təstiq etmək üçün adınızı və e-poçtunuzu təqdim etməlisiniz.',
 
-
-
-
-
+	"currencies" => "Valyutalar",
+	"view_all_currencies" => "Bütün valyutalara bax",
+	'delete_currency_confirm' => 'Bu valyutanı silmək istədiyinizdən əminsiniz?'
 );

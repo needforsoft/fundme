@@ -71,8 +71,8 @@
                       	{{ trans('misc.user_not_available') }}
                           @endif
                       	</td>
-                      <td>{{ App\Helper::amountFormat($campaign->goal) }}</td>
-                      <td>{{ App\Helper::amountFormat($campaign->donations()->sum('donation')) }}</td>
+                      <td>{{ App\Helper::amountFormat($campaign->goal, $campaign->goal_currency_code) }}</td>
+                      <td>{{ App\Helper::amountFormat($campaign->donations()->sum('donation'), $campaign->goal_currency_code) }}</td>
                       <td>
                       	@if( $campaign->status == 'active' && $campaign->finalized == 0 )
                       	<span class="label label-success">{{trans('misc.active')}}</span>

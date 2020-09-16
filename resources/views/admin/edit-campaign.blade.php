@@ -18,7 +18,6 @@
             		{{ $data->title }}
 
           </h4>
-
         </section>
 
         <!-- Main content -->

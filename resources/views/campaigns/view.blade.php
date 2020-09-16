@@ -281,11 +281,11 @@
 		&& $response->finalized == 0
 		)
 		<div class="row margin-bottom-20">
-			<div class="col-md-12">
+			{{--<div class="col-md-12">
 				<a class="btn btn-lg btn-default btn-block margin-bottom-5"
 					href="{{ url('rewards/campaign',$response->id) }}"><i class="icon-gift"></i>
 					{{trans('misc.add_reward')}}</a>
-			</div>
+			</div>--}}
 			<div class="col-md-12">
 				<a class="btn btn-success btn-block margin-bottom-5"
 					href="{{ url('edit/campaign',$response->id) }}">{{trans('misc.edit_campaign')}}</a>
@@ -310,11 +310,11 @@
 		&& $response->finalized == 0
 		)
 		<div class="row margin-bottom-20">
-			<div class="col-md-12">
+			{{--<div class="col-md-12">
 				<a class="btn btn-lg btn-default btn-block margin-bottom-5"
 					href="{{ url('rewards/campaign',$response->id) }}"><i class="icon-gift"></i>
 					{{trans('misc.add_reward')}}</a>
-			</div>
+			</div>--}}
 			<div class="col-md-12">
 				<a class="btn btn-success btn-block margin-bottom-5"
 					href="{{ url('edit/campaign',$response->id) }}">{{trans('misc.edit_campaign')}}</a>
@@ -459,8 +459,8 @@
 			<div class="panel-body">
 				<h3 class="btn-block margin-zero" style="line-height: inherit;">
 					<strong
-						class="font-default">{{App\Helper::amountFormat($response->donations()->sum('donation'))}}</strong>
-					<small>{{trans('misc.of')}} {{App\Helper::amountFormat($response->goal)}}
+						class="font-default">{{App\Helper::amountFormat($response->donations()->sum('donation'), $response->goal_currency_code)}}</strong>
+					<small>{{trans('misc.of')}} {{App\Helper::amountFormat($response->goal, $response->goal_currency)}}
 						{{strtolower(trans('misc.goal'))}}</small>
 				</h3>
 
@@ -493,13 +493,13 @@
 				<button class="btn btn-default" id="btn_campaign_url">{{ trans('misc.copy_link') }}</button>
 			</div>
 		</div>
-
+{{--
 		@if( isset( $deadline ) && $deadline > $timeNow && $response->finalized == 0
 		|| !isset( $deadline ) && $response->finalized == 0 )
 
 		@if( $response->rewards->count() != 0 )
 		@foreach ($response->rewards as $reward)
-		<?php
+		{{
 
 				$pledge = '?pledge='.$reward->id;
 
@@ -518,7 +518,8 @@
 					$url_campaign = 'javascript:void(0);';
 				}
 
-		 ?>
+		}}
+
 		<!-- Start Panel -->
 		<a href="@if( Auth::check() && Auth::user()->id == $response->user_id ) {{url('edit/rewards',$reward->id)}} @else {{$url_campaign}} @endif"
 			class="selectReward">
@@ -535,6 +536,7 @@
 					</span>
 				</span>
 			</span>
+
 
 
 			<div class="panel panel-default">
@@ -561,11 +563,12 @@
 					<strong>{{ date('F, Y', strtotime($reward->delivery)) }}</strong>
 				</div><!-- panel-body -->
 			</div><!-- End Panel -->
-		</a>
+		</a>		
 		@endforeach
 		@endif
 
-		@endif {{-- End IF Deadline --}}
+		@endif --}}
+		{{-- End IF Deadline --}}
 
 		@if( Auth::check() && isset($response->user()->id) && Auth::user()->id != $response->user()->id )
 		<div class="btn-block text-center">
@@ -774,7 +777,7 @@ $("#deleteCampaign").click(function(e) {
             $temp.remove();
 		        }
 
-		$('.selectReward').hover(
+		/*$('.selectReward').hover(
 
 	   function () {
 	      $(this).find('.cardSelectRewardBox').fadeIn();
@@ -783,7 +786,7 @@ $("#deleteCampaign").click(function(e) {
 	   function () {
 	      $(this).find('.cardSelectRewardBox').fadeOut();
 	   }
-	);
+	);*/
 
 </script>
 

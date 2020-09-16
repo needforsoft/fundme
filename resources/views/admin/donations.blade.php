@@ -34,8 +34,9 @@
                       <th class="active">{{ trans_choice('misc.campaigns_plural', 1) }}</th>
                       <th class="active">{{ trans('auth.email') }}</th>
                       <th class="active">{{ trans('misc.donation') }}</th>
+                      <th class="active">{{ trans('misc.donation_currency_code') }}</th>
                       <th class="active">{{ trans('misc.payment_gateway') }}</th>
-                      <th class="active">{{ trans('misc.reward') }}</th>
+                      {{--<th class="active">{{ trans('misc.reward') }}</th>--}}
                       <th class="active">{{ trans('admin.date') }}</th>
                       <th class="active">{{ trans('admin.actions') }}</th>
                     </tr><!-- /.TR -->
@@ -54,9 +55,10 @@
                       @endif
                       </td>
                       <td>{{ $donation->email }}</td>
-                      <td>{{ App\Helper::amountFormat($donation->donation) }}</td>
+                      <td>{{ App\Helper::amountFormat($donation->donation, $donation->donation_currency_code) }}</td>
+                      <td>{{ $donation->donation_currency_code }}</td>
                       <td>{{ $donation->payment_gateway }}</td>
-                      <td>@if( $donation->rewards_id )<i class="icon-gift"></i>@else - @endif</td>
+                      {{--<td>@if( $donation->rewards_id )<i class="icon-gift"></i>@else - @endif</td>--}}
                       <td>{{ date($settings->date_format, strtotime($donation->date)) }}</td>
 
                       <td> <a href="{{ url('panel/admin/donations',$donation->id) }}" class="btn btn-success btn-xs padding-btn">

@@ -86,7 +86,7 @@
     				<p class="desc-campaigns">
     						<span class="stats-campaigns">
     							<span class="pull-left">
-    								<strong>{{App\Helper::amountFormat($response->donations()->sum('donation'))}}</strong>
+    								<strong>{{App\Helper::amountFormat($response->donations()->sum('donation'), $response->goal_currency_code)}}</strong>
     								{{trans('misc.raised')}}
     								</span>
     							<span class="pull-right"><strong>{{$percentage }}%</strong></span>

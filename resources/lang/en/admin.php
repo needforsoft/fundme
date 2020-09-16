@@ -156,6 +156,7 @@ return array(
 	'i_agree_gdpr' => 'I agree with the processing of personal data',
 	'date_format' => 'Date Format',
 	'currency_position' => 'Currency Position',
+	'currency_symbol_position' => 'Currency Position',
 	'right' => 'Right',
 	'left' => 'Left',
 
@@ -171,5 +172,9 @@ return array(
 	'bank_transfer_limit' => 'Bank transfer details must be between 10 and 300 characters.',
 	'bank_transfer_details' => 'Bank transfer details',
 	'bank_transfer_info' => 'Enter transfer number and data to confirm your payment...',
-	'card_required_name_email' => 'You must provide your name and email to process your donation with your card.'
+	'card_required_name_email' => 'You must provide your name and email to process your donation with your card.',
+
+	"currencies" => "Currencies",
+	"view_all_currencies" => "View all currencies",
+	'delete_currency_confirm' => 'Sure you want to delete this Currency?'
 );

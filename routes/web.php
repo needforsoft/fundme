@@ -303,6 +303,14 @@ Route::group(['middleware' => 'role'], function() {
 	Route::get('panel/admin/member/add','AdminController@add_member');
 	Route::post('panel/admin/member/add','AdminController@storeMember');
 
+	//Currencies
+	Route::get('panel/admin/currencies','AdminController@getCurrencies');
+	Route::get('panel/admin/currencies/add','AdminController@getAddCurrency');
+	Route::post('panel/admin/currencies/add', 'AdminController@addCurrency');
+	Route::get('panel/admin/currencies/edit/{currency_code}', 'AdminController@editCurrency');
+	Route::put("panel/admin/currencies/update/{currency_code}",  'AdminController@updateCurrency');
+	Route::delete('panel/admin/currencies/delete/{currency_code}','AdminController@deleteCurrency');
+
 	// Pages
 	Route::resource('panel/admin/pages', 'PagesController',
 		['names' => [

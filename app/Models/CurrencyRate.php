@@ -10,6 +10,6 @@ class CurrencyRate extends Model
     [
         "currency_from",
         "currency_to",
-        "rate"
+        "exchange_rate"
     ];
 }

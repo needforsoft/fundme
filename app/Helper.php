@@ -4,6 +4,8 @@ namespace App;
 
 use Image;
 use App\Models\AdminSettings;
+use App\Models\Currency;
+use App\Models\CurrencyRate;
 
 class Helper
 {
@@ -343,19 +345,58 @@ class Helper
 		$thumbnail->save($name)->destroy();
 	}
 
-	public static function amountFormat($value)
+	public static function amountFormatByCurrencyCode($value, $from_currency_code, $to_currency_code)
 	{
-
-		$settings = AdminSettings::first();
-
-		if ($settings->currency_position == 'left') {
-			$amount = $settings->currency_symbol . number_format($value);
-		} elseif ($settings->currency_position == 'right') {
-			$amount = number_format($value) . $settings->currency_symbol;
+		if ($to_currency_code != $from_currency_code) {
+			$currency = Currency::find($to_currency_code);
 		} else {
-			$amount = $settings->currency_symbol . number_format($value);
+			$currency = Currency::find($from_currency_code);
+		}
+	
+		$amount_converted = self::ConvertCurrency($value, $from_currency_code, $to_currency_code);
+
+		$amount = "";
+
+		switch ($currency->currency_symbol_position) {
+			case "left": {
+					$amount = $currency->currency_symbol . number_format($amount_converted);
+					break;
+				}
+			case "right": {
+					$amount = number_format($amount_converted) . $currency->currency_symbol;
+					break;
+				}
 		}
 
 		return $amount;
 	}
+
+	public static function amountFormat($value, $from_currency_code)
+	{	
+		$to_currency_code = $from_currency_code == config("app.currency_code") 
+		? $from_currency_code :  config("app.currency_code");
+
+		return self::amountFormatByCurrencyCode($value, $from_currency_code, $to_currency_code);
+	}
+
+	public static function ConvertCurrency($amount, $from_currency_code, $to_currency_code)
+	{
+		$currency_rate = 1;
+		
+		if ($to_currency_code != $from_currency_code) {
+
+			$curr = CurrencyRate::where("currency_from", $from_currency_code)
+			->where("currency_to", $to_currency_code)->first();
+			
+			if($curr != null)
+				$currency_rate = $curr->exchange_rate;
+		}
+		else 
+			return $amount; 
+
+		$amount_converted = floor($amount / $currency_rate);
+
+		return $amount_converted;
+	}
+
 }//<--- End Class

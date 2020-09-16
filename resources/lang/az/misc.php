@@ -181,6 +181,7 @@ return array(
 	'donation_plural' => 'İanə|İanələr',
 	'donations' => 'İanələr',
 	'donation' => 'İanə',
+	"donation_currency_code" => 'Valyuta kodu',
 	'story' => 'Hekayə',
 	'updates' => 'Yeniləmələr',
 	'recent_donations' => 'Son ianələr',

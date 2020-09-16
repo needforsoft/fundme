@@ -50,7 +50,7 @@
 
 					  <!-- start -->
 					  <dt>{{ trans('misc.donation') }}</dt>
-					  <dd><strong class="text-success">{{App\Helper::amountFormat($data->donation)}}</strong></dd>
+					  <dd><strong class="text-success">{{App\Helper::amountFormat($data->donation, $data->donation_currency_code)}}</strong></dd>
 					  <!-- ./end -->
 
 					  <!-- start -->
@@ -122,7 +122,7 @@
 					  	@endif
 					  	</dd>
 					  <!-- ./end -->
-
+{{--
             <!-- start -->
 					  <dt>{{ trans('misc.reward') }}</dt>
 					  <dd>
@@ -137,6 +137,7 @@
 					  	@endif
 					  	</dd>
 					  <!-- ./end -->
+					  --}}
 
 					</dl>
               	</div><!-- box body -->
@@ -198,7 +199,8 @@ $(".actionDelete").click(function(e) {
 	element.blur();
 
   swal(
-		{   title: "{{trans('misc.delete_confirm')}}",
+		{   
+		  title: "{{trans('misc.delete_confirm')}}",
 		  type: "warning",
 		  showLoaderOnConfirm: true,
 		  showCancelButton: true,

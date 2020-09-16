@@ -6,8 +6,21 @@
 	$total_campaigns = App\Models\Campaigns::count();
 	$campaigns       = App\Models\Campaigns::orderBy('id','DESC')->take(3)->get();
 	$users        = App\Models\User::orderBy('id','DESC')->take(4)->get();
-	$total_raised_funds = App\Models\Donations::where('approved','1')->sum('donation');
-	$total_donations = App\Models\Donations::count();
+	$all_donations = App\Models\Donations::where('approved','1');
+
+  $current_currency = App\Models\Currency::find(config("app.currency_code"));
+
+  $total_donations = App\Models\Donations::count();
+  
+	$total_raised_funds = 0;
+  foreach (App\Models\Currency::all() as $currency) {
+    $all_donations = App\Models\Donations::where('approved','1')->where("donation_currency_code", $currency->currency_code)->get();
+
+    if($all_donations == null ||  $all_donations->count() == 0)
+      continue;
+
+        $total_raised_funds +=  App\Helper::ConvertCurrency($all_donations->sum("donation"), $currency->currency_code, $currency_currency);
+  }
 
 ?>
 @extends('admin.layout')
@@ -53,7 +66,7 @@
               <!-- small box -->
               <div class="small-box bg-green">
                 <div class="inner">
-                  <h3>@if($settings->currency_position == 'left')<sup style="font-size: 20px">{{ $settings->currency_symbol }}</sup>@endif{{ \App\Helper::formatNumber( $total_raised_funds ) }}@if($settings->currency_position == 'right')<sup style="font-size: 20px">{{ $settings->currency_symbol }}</sup>@endif</h3>
+                  <h3>@if($current_currency->currency_position == 'left')<sup style="font-size: 20px">{{ $current_currency->currency_symbol }}</sup>@endif{{ \App\Helper::formatNumber( $total_raised_funds ) }}@if($current_currency->currency_position == 'right')<sup style="font-size: 20px">{{ $current_currency->currency_symbol }}</sup>@endif</h3>
                   <p>{{ trans('misc.funds_raised') }}</p>
                 </div>
                 <div class="icon">

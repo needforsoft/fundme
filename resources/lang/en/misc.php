@@ -181,6 +181,7 @@ return array(
 	'donation_plural' => 'Donation|Donations',
 	'donations' => 'Donations',
 	'donation' => 'Donation',
+	"donation_currency_code" => 'Donation Currency',
 	'story' => 'The Story',
 	'updates' => 'Updates',
 	'recent_donations' => 'Recent Donations',
