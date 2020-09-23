@@ -667,9 +667,11 @@ ul.dropdown-menu > li.active > a {
  */
 .index-header {
     /*padding-top: 140px !important;*/
-    background: url('../img/header.jpg') no-repeat center center #D1D1D1;
-    background-size: cover;
+    /* background: url('../img/header.jpg') no-repeat center center #D1D1D1; */
+    /* background-size: cover; */
+    background-color: #F1F1F1;
     position:relative;
+    color: black;
 }
 /***************************
  * Static Header
@@ -1678,7 +1680,7 @@ textarea.textarea-text:focus {
 
   .profile-user-over {
 	margin-top: -100px  !important;
-	position relative;
+	position: relative;
 }
 
   .jumbotron.md {
@@ -1968,7 +1970,7 @@ li.active-list > a:active {
  * *************************
  */
 .navbar-inverse {
-  background: transparent;
+  background: black;
   border: none;
   margin-bottom: 0;
 }
@@ -2031,7 +2033,7 @@ li.active-list > a:active {
 
   .profile-user-over {
 	margin-top: -55px  !important;
-	position relative;
+	position: relative;
 }
 
   .navbar-inverse .navbar-nav > li > a.log-in,
@@ -2073,7 +2075,7 @@ li.active-list > a:active {
 h1.title-site,
 h2.title-site {
     font-family: "Raleway",Helvetica,Arial,sans-serif;
-    color: #FFF;
+    color: #777;
     text-overflow: inherit;
     overflow: visible;
     white-space: normal;
@@ -2085,7 +2087,7 @@ h2.title-site {
 	font-size: 50px;
 }
 .subtitle-site {
-    color: #FFF;
+    color: #282828;
     text-align: center;
 }
 .txt-center {
@@ -3162,7 +3164,25 @@ a:focus.btn-whatsapp {
  display: none;
 }
 
+.w-100
+{
+    width: 100%;
+}
+
+.margin-top-5
+{
+    margin-top: 5px !important;
+}
+.no-padding {
+    padding: 0px !important;
+  }
+  .no-margin {
+    margin: 0px !important;
+  }
+
 @media screen and (max-width: 767px) {
 .d-lg-none  {
     display: inline-block !important;
 }
+}
+

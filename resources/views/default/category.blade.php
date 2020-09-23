@@ -4,8 +4,8 @@
 @section('title'){{ $category->name.' - ' }}@endsection
 
 @section('content') 
-<div class="jumbotron md index-header jumbotron_set jumbotron-cover">
-      <div class="container wrap-jumbotron position-relative">
+<div class="index-header">
+      <div class="container position-relative">
         <h2 class="title-site">{{ $category->name }}</h2>
        
        

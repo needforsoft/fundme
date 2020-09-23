@@ -9,13 +9,13 @@
 
 @section('content')
 
-<div class="jumbotron md index-header jumbotron_set jumbotron-cover">
-	<div class="container wrap-jumbotron position-relative">
+<div class="index-header">
+	<div class="container position-relative">
 		<h2 class="title-site">{{ trans('misc.create_campaign') }}</h2>
 	</div>
 </div>
 
-<div class="container margin-bottom-40 padding-top-40">
+<div class="container margin-bottom-40 margin-top-5">
 	<div class="row">
 
 		<!-- col-md-8 -->

@@ -84,12 +84,7 @@
 
 @section('content')
 
-<div class="jumbotron md index-header jumbotron_set jumbotron-cover">
-	<div class="container wrap-jumbotron position-relative">
-	</div>
-</div>
-
-<div class="container margin-bottom-40 padding-top-40">
+<div class="container margin-bottom-5 padding-top-40 margin-top-10">
 
 	@if (session()->has('donation_cancel'))
 	<div class="alert alert-danger text-center btn-block margin-bottom-20  custom-rounded" role="alert">

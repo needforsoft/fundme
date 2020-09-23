@@ -7,34 +7,12 @@ $total_members      = App\Models\User::count();
 @extends('app')
 
 @section('content')
-<div class="jumbotron index-header jumbotron_set jumbotron-cover @if( Auth::check() ) session-active-cover @endif">
+{{-- <div class="jumbotron index-header jumbotron_set jumbotron-cover @if( Auth::check() ) session-active-cover @endif">
       <div class="container wrap-jumbotron position-relative">
         <h1 class="title-site txt-left" id="titleSite">{{$settings->welcome_text}}</h1>
         <p class="subtitle-site txt-left"><strong>{{$settings->welcome_subtitle}}</strong></p>
       </div><!-- container wrap-jumbotron -->
-</div><!-- jumbotron -->
-
-@if( $categories->count() != 0 )
-<div class="container margin-bottom-40">
-
-			<div class="col-md-12 btn-block margin-bottom-40 head-home">
-				<h1 class="btn-block text-center class-montserrat margin-bottom-zero none-overflow">{{trans('misc.categories')}}</h1>
-				<h5 class="btn-block text-center class-montserrat subtitle-color">
-					<a href="{{ url('categories') }}">
-			        			<strong>{{ trans('misc.view_all') }} <i class="fa fa-long-arrow-right"></i></strong>
-			        		</a>
-			        		</h5>
-			</div>
-
-			 @foreach(  App\Models\Categories::where('mode','on')->orderBy('name')->take(4)->get() as $category )
-
-			     @include('includes.categories-listing')
-
-			  @endforeach
-
-
-</div><!-- container -->
-@endif
+</div><!-- jumbotron --> --}}
 
 @if( $data->total() != 0 )
 	<div class="container margin-bottom-40">
@@ -74,27 +52,6 @@ $total_members      = App\Models\User::count();
 			@include('includes.campaigns')
 		</div>
 
-		<div class="row margin-bottom-40">
-
-		<div class="container">
-			<div class="col-md-4 border-stats">
-					<h1 class="btn-block text-center class-montserrat margin-bottom-zero none-overflow"><span class=".numbers-with-commas counter"><?php echo html_entity_decode( App\Helper::formatNumbersStats($total_members) ) ?></span></h1>
-					<h5 class="btn-block text-center class-montserrat subtitle-color text-uppercase">{{trans('misc.members')}}</h5>
-				</div><!-- col-md-3 -->
-
-			<div class="col-md-4 border-stats">
-					<h1 class="btn-block text-center class-montserrat margin-bottom-zero none-overflow"><span class=".numbers-with-commas counter"><?php echo html_entity_decode( App\Helper::formatNumbersStats($total_campaigns) ) ?></span></h1>
-					<h5 class="btn-block text-center class-montserrat subtitle-color text-uppercase">{{trans('misc.campaigns')}}</h5>
-				</div><!-- col-md-3 -->
-
-				<div class="col-md-4 border-stats">
-					<h1 class="btn-block text-center class-montserrat margin-bottom-zero none-overflow">@if($settings->currency_position == 'left') {{ $settings->currency_symbol }}@endif<?php echo html_entity_decode( App\Helper::formatNumbersStats($total_raised_funds) ) ?>@if($settings->currency_position == 'right'){{ $settings->currency_symbol }} @endif</h1>
-					<h5 class="btn-block text-center class-montserrat subtitle-color text-uppercase">{{trans('misc.funds_raised')}}</h5>
-				</div><!-- col-md-3 -->
-
-		</div><!-- row -->
-		</div>
-
 	</div><!-- container wrap-ui -->
 
 	@else
@@ -111,15 +68,54 @@ $total_members      = App\Models\User::count();
 	</div>
 	@endif
 
+@if( $categories->count() != 0 )
+<div class="container">
 
+			<div class="col-md-12 btn-block margin-bottom-40 head-home">
+				<h1 class="btn-block text-center class-montserrat margin-bottom-zero none-overflow">{{trans('misc.categories')}}</h1>
+				<h5 class="btn-block text-center class-montserrat subtitle-color">
+					<a href="{{ url('categories') }}">
+			        			<strong>{{ trans('misc.view_all') }} <i class="fa fa-long-arrow-right"></i></strong>
+			        		</a>
+			        		</h5>
+			</div>
 
-	<div class="jumbotron jumbotron-bottom margin-bottom-zero jumbotron-cover">
-      <div class="container wrap-jumbotron position-relative">
-        <h1 class="title-site">{{trans('misc.title_cover_bottom')}}</h1>
-        <p class="subtitle-site txt-center"><strong>{{$settings->welcome_subtitle}}</strong></p>
+			 @foreach(  App\Models\Categories::where('mode','on')->orderBy('name')->take(4)->get() as $category )
 
-      </div><!-- container wrap-jumbotron -->
-</div><!-- jumbotron -->
+			     @include('includes.categories-listing')
+
+			  @endforeach
+			  <div class="row margin-bottom-40">
+
+				<div class="container">
+					<div class="col-md-4 border-stats">
+							<h1 class="btn-block text-center class-montserrat margin-bottom-zero none-overflow"><span class=".numbers-with-commas counter"><?php echo html_entity_decode( App\Helper::formatNumbersStats($total_members) ) ?></span></h1>
+							<h5 class="btn-block text-center class-montserrat subtitle-color text-uppercase">{{trans('misc.members')}}</h5>
+						</div><!-- col-md-3 -->
+		
+					<div class="col-md-4 border-stats">
+							<h1 class="btn-block text-center class-montserrat margin-bottom-zero none-overflow"><span class=".numbers-with-commas counter"><?php echo html_entity_decode( App\Helper::formatNumbersStats($total_campaigns) ) ?></span></h1>
+							<h5 class="btn-block text-center class-montserrat subtitle-color text-uppercase">{{trans('misc.campaigns')}}</h5>
+						</div><!-- col-md-3 -->
+		
+						<div class="col-md-4 border-stats">
+							<h1 class="btn-block text-center class-montserrat margin-bottom-zero none-overflow">@if($settings->currency_position == 'left') {{ $settings->currency_symbol }}@endif<?php echo html_entity_decode( App\Helper::formatNumbersStats($total_raised_funds) ) ?>@if($settings->currency_position == 'right'){{ $settings->currency_symbol }} @endif</h1>
+							<h5 class="btn-block text-center class-montserrat subtitle-color text-uppercase">{{trans('misc.funds_raised')}}</h5>
+						</div><!-- col-md-3 -->
+		
+				</div><!-- row -->
+				</div>
+
+</div><!-- container -->
+@endif
+{{-- <div class="jumbotron jumbotron-bottom margin-bottom-zero jumbotron-cover">
+	<div class="container wrap-jumbotron position-relative">
+	  <h1 class="title-site">{{trans('misc.title_cover_bottom')}}</h1>
+	  <p class="subtitle-site txt-center"><strong>{{$settings->welcome_subtitle}}</strong></p>
+
+	</div><!-- container wrap-jumbotron -->
+</div><!-- jumbotron --> --}}
+
 @endsection
 
 @section('javascript')

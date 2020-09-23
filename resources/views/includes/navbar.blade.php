@@ -5,8 +5,7 @@ $categoriesMenu = App\Models\Categories::where('mode','on')->orderBy('name')->ta
 $categoriesTotal = App\Models\Categories::count();
 $settings = App\Models\AdminSettings::first();
 ?>
-
-
+<div class="w-100 no-padding no-margin">
 <div class="btn-block text-center showBanner padding-top-10 padding-bottom-10" style="display:none;">
 	{{trans('misc.cookies_text')}} <button class="btn btn-sm btn-success"
 		id="close-banner">{{trans('misc.agree')}}</button></div>
@@ -15,7 +14,7 @@ $settings = App\Models\AdminSettings::first();
 <div class="btn-block margin-top-zero text-center confirmEmail">{{trans('misc.confirm_email')}}
 	<strong>{{Auth::user()->email}}</strong></div>
 @endif
-<div class="navbar navbar-inverse navbar-px padding-top-10 padding-bottom-10">
+<div class="navbar-inverse padding-top-10 padding-bottom-10 w-100">
 	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -219,4 +218,5 @@ $settings = App\Models\AdminSettings::first();
 		<button type="submit" class="btn btn-lg no-shadow btn-trans custom-rounded btn_search"
 			id="btnSearch">{{trans('misc.search')}}</button>
 	</form>
+</div>
 </div>
