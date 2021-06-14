@@ -3,6 +3,7 @@
  namespace App;
 
 use App\Models\CurrencyRate;
+use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use GuzzleHttp\Client;
 
@@ -42,7 +43,9 @@ class CurrencyExchangeHelper
             {
                 $reqUrl  = "https://api.exchangerate.host/latest?symbols={$k}&base={$v}";
 
-                $client = new Client();
+                try
+                {
+                    $client = new Client();
                 $resp = $client->get($reqUrl);
 
                 if($resp)
@@ -70,6 +73,11 @@ class CurrencyExchangeHelper
 
                         $er->save();
                     }
+                }
+                }
+                catch(Exception $exp)
+                {
+                    //ignored
                 }
             }
         }

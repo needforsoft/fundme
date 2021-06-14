@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call(CurrencyExchangeHelper::RefreshExchangeRates())->everyThreeHours();
+        //$schedule->call(CurrencyExchangeHelper::RefreshExchangeRates())->everyThreeHours();
         // $schedule->command('inspire')
         //          ->hourly();
     }
