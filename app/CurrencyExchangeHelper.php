@@ -4,7 +4,7 @@
 
 use App\Models\CurrencyRate;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Facades\Http;
+use GuzzleHttp\Client;
 
 class CurrencyExchangeHelper
     {
@@ -42,11 +42,14 @@ class CurrencyExchangeHelper
             {
                 $reqUrl  = "https://api.exchangerate.host/latest?symbols={$k}&base={$v}";
 
-                $resp = Http::get($reqUrl);
+                $client = new Client();
+                $resp = $client->get($reqUrl);
 
-                if($resp->ok())
+                if($resp)
                 {
-                    foreach($resp->json().rates as $c => $r)
+                    $body = $resp->getBody();
+
+                    foreach($body["rates"] as $c => $r)
                     {
                         $er = CurrencyRate::where("currency_from", $k)
                         ->where("currency_to", $c)->get();
