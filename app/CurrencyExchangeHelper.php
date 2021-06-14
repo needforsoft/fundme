@@ -3,6 +3,8 @@
  namespace App;
 
 use App\Models\CurrencyRate;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Http;
 
 class CurrencyExchangeHelper
     {
@@ -18,13 +20,55 @@ class CurrencyExchangeHelper
             if($currencyAmount == 0.0)
                 return 0.0;
 
-            $exchangeRate = CurrencyRate::where("currencyFrom", $fromCurrencyCode)
-            ->where("currencyTo", $toCurrencyCode)->get();
+            $exchangeRate = CurrencyRate::where("currency_from", $fromCurrencyCode)
+            ->where("currency_to", $toCurrencyCode)->get();
 
             if($exchangeRate == null)
                 return -1;
 
             return $currencyAmount / $exchangeRate;
+        }
+
+        public static function RefreshExchangeRates()
+        {
+            $currenies = [
+                "AZN" => "USD,EUR,TRY",
+                "USD" => "AZN,EUR,TRY",
+                "EUR" => "AZN,USD,TRY",
+                "TRY" => "AZN,USD,EUR",
+            ];
+
+            foreach($currenies as $k => $v)
+            {
+                $reqUrl  = "https://api.exchangerate.host/latest?symbols={$k}&base={$v}";
+
+                $resp = Http::get($reqUrl);
+
+                if($resp->ok())
+                {
+                    foreach($resp->json().rates as $c => $r)
+                    {
+                        $er = CurrencyRate::where("currency_from", $k)
+                        ->where("currency_to", $c)->get();
+
+                        if($er == null || $er instanceof ModelNotFoundException)
+                        {
+                            $er = new CurrencyRate();
+                            $er->currency_from = $k;
+                            $er->currency_to = $c;
+                            $er->exchange_rate = $r;
+                        }
+                        else
+                        {
+                            $er->currency_from = $k;
+                            $er->currency_to = $c;
+                            $er->exchange_rate = $r;
+                        }
+
+                        $er->save();
+                    }
+                }
+            }
         }
     }
 

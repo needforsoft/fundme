@@ -35,7 +35,7 @@
     				<h4 class="margin-top-zero">{{trans('misc.about')}}</h4>
     				<ul class="list-unstyled">
     					@foreach( App\Models\Pages::all() as $page )
-        			<li><a class="link-footer" href="{{ url('/page',$page->slug) }}">{{ $page->title }}</a></li>
+        			<li><a class="link-footer" href="{{ url('/page',$page->slug) }}">@lang("page.".$page->slug)</a></li>
         	@endforeach
     				</ul>
     			</div><!-- ./End col-md-* -->

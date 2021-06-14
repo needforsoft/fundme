@@ -11,6 +11,7 @@ use App\Models\Campaigns;
 use App\Models\Updates;
 use App\Models\User;
 use App\Helper;
+use Illuminate\Support\Str;
 use App\Models\Currency;
 use Carbon\Carbon;
 use App\Models\Withdrawals;
@@ -42,20 +43,11 @@ class CampaignsController extends Controller
 		$sizeAllowed = $this->settings->file_size_allowed * 1024;
 		$dimensions = explode('x', $this->settings->min_width_height_image);
 
-		if ($this->settings->currency_position == 'right') {
-			$currencyPosition =  2;
-		} else {
-			$currencyPosition =  null;
-		}
-
 		$messages = array(
 			'photo.required' => trans('misc.please_select_image'),
 			'categories_id.required' => trans('misc.please_select_category'),
 			'description.required' => trans('misc.description_required'),
 			'description.text_required' => trans('misc.text_required'),
-			'goal.min' => trans('misc.amount_minimum' . $currencyPosition, ['symbol' => $this->settings->currency_symbol, 'code' => $this->settings->currency_code]),
-			'goal.max' => trans('misc.amount_maximum' . $currencyPosition, ['symbol' => $this->settings->currency_symbol, 'code' => $this->settings->currency_code]),
-
 			"photo.max"   => trans('misc.max_size') . ' ' . Helper::formatBytes($sizeAllowed, 1),
 		);
 
@@ -65,7 +57,6 @@ class CampaignsController extends Controller
 				'photo'           => 'required|mimes:jpg,gif,png,jpe,jpeg|dimensions:min_width=' . $dimensions[0] . ',min_height=' . $dimensions[1] . '|max:' . $this->settings->file_size_allowed . '',
 				'title'             => 'required|min:3|max:45',
 				'categories_id'  => 'required',
-				'goal'             => 'required|integer|max:' . $this->settings->max_campaign_amount . '|min:' . $this->settings->min_campaign_amount,
 				'location'        => 'required|max:50',
 				'description'  => 'required|text_required|min:20',
 			], $messages);
@@ -76,7 +67,6 @@ class CampaignsController extends Controller
 				'photo'           => 'mimes:jpg,gif,png,jpe,jpeg|dimensions:min_width=' . $dimensions[0] . ',min_height=' . $dimensions[1] . '|max:' . $this->settings->file_size_allowed . '',
 				'title'             => 'required|min:3|max:45',
 				'categories_id'  => 'required',
-				'goal'             => 'required|integer|max:' . $this->settings->max_campaign_amount . '|min:' . $this->settings->min_campaign_amount,
 				'location'        => 'required|max:50',
 				'description'  => 'required|min:20|text_required',
 			], $messages);
@@ -101,12 +91,23 @@ class CampaignsController extends Controller
 			]);
 		} //<-- Validator
 
-		$goal_currency_code = $this->request->campaign_currency;
+		$goal_currency_code = $this->request->goal_currency_code;
+		$goal = $this->request->goal;
+		$currency = Currency::find($goal_currency_code);
 
-		if (Currency::find($goal_currency_code) instanceof ModelNotFoundException) {
+		
+		if ($currency instanceof ModelNotFoundException) {
 			return response()->json([
 				'success' => false,
 				'errors' => array(trans("error.currency_not_supported", $goal_currency_code)),
+			]);
+		}
+		
+		if($goal < $currency->campaign_min_ammount && $goal > $currency->campaign_max_amount)
+		{
+			return response()->json([
+				'success' => false,
+				'errors' => array(trans("misc.amount_range", ["val1" => Helper::formatAmountByCurrency($currency->campaign_min_ammount, $currency), "val2" => Helper::formatAmountByCurrency($currency->campaign_max_ammount, $currency)])),
 			]);
 		}
 
@@ -192,7 +193,7 @@ class CampaignsController extends Controller
 		$sql->user_id          = Auth::user()->id;
 		$sql->date               = Carbon::now();
 		$sql->status             = $_status;
-		$sql->token_id         = str_random(200);
+		$sql->token_id         = Str::random(200);
 		$sql->goal               = trim($this->request->goal);
 		$sql->goal_currency_code = $goal_currency_code;
 		$sql->location          = trim($this->request->location);
@@ -225,7 +226,7 @@ class CampaignsController extends Controller
 		if (str_slug($response->title) == '') {
 			$slugUrl  = '';
 		} else {
-			$slugUrl  = '/' . str_slug($response->title);
+			$slugUrl  = '/' . Str::slug($response->title);
 		}
 
 		$url_campaign = 'campaign/' . $response->id . $slugUrl;
@@ -339,11 +340,23 @@ class CampaignsController extends Controller
 			]);
 		} //<-- Validator
 
-		$goal_currency_code = $this->request->campaign_currency;
-		if (Currency::find($goal_currency_code) instanceof ModelNotFoundException) {
+		$goal_currency_code = $this->request->goal_currency_code;
+		$goal = $this->request->goal;
+		$currency = Currency::find($goal_currency_code);
+
+		
+		if ($currency instanceof ModelNotFoundException) {
 			return response()->json([
 				'success' => false,
 				'errors' => array(trans("error.currency_not_supported", $goal_currency_code)),
+			]);
+		}
+		
+		if($goal < $currency->campaign_min_ammount && $goal > $currency->campaign_max_amount)
+		{
+			return response()->json([
+				'success' => false,
+				'errors' => array(trans("misc.amount_range", ["val1" => Helper::formatAmountByCurrency($currency->campaign_min_ammount, $currency), "val2" => Helper::formatAmountByCurrency($currency->campaign_max_ammount, $currency)])),
 			]);
 		}
 

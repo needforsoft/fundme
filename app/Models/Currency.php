@@ -14,6 +14,10 @@ class Currency extends Model
     [
         "currency_code",
         "currency_symbol",
-        "currency_symbol_position"
+        "currency_symbol_position",
+        "min_campaign_amount",
+        "max_campaign_amount",
+        "min_donation_amount",
+        "max_donation_amount"
     ];
 }

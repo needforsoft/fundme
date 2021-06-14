@@ -80,46 +80,6 @@
                       </div>
                     </div>
                   </div><!-- /.box-body -->
-                  
-                  <!-- Start Box Body -->
-                  <div class="box-body">
-                    <div class="form-group">
-                      <label class="col-sm-2 control-label">{{ trans('admin.min_campaign_amount') }}</label>
-                      <div class="col-sm-10">
-                        <input type="number" min="1" autocomplete="off" value="{{ $settings->min_campaign_amount }}" name="min_campaign_amount" class="form-control onlyNumber" placeholder="{{ trans('admin.min_campaign_amount') }}">
-                      </div>
-                    </div>
-                  </div><!-- /.box-body -->
-                  
-                   <!-- Start Box Body -->
-                  <div class="box-body">
-                    <div class="form-group">
-                      <label class="col-sm-2 control-label">{{ trans('misc.max_campaign_amount') }}</label>
-                      <div class="col-sm-10">
-                        <input type="number" min="1" autocomplete="off" value="{{ $settings->max_campaign_amount }}" name="max_campaign_amount" class="form-control onlyNumber" placeholder="{{ trans('admin.max_campaign_amount') }}">
-                      </div>
-                    </div>
-                  </div><!-- /.box-body -->
-                  
-                  <!-- Start Box Body -->
-                  <div class="box-body">
-                    <div class="form-group">
-                      <label class="col-sm-2 control-label">{{ trans('admin.min_donation_amount') }}</label>
-                      <div class="col-sm-10">
-                        <input type="number" min="1" autocomplete="off" value="{{ $settings->min_donation_amount }}" name="min_donation_amount" class="form-control onlyNumber" placeholder="{{ trans('admin.min_donation_amount') }}">
-                      </div>
-                    </div>
-                  </div><!-- /.box-body -->
-                  
-                  <!-- Start Box Body -->
-                  <div class="box-body">
-                    <div class="form-group">
-                      <label class="col-sm-2 control-label">{{ trans('misc.max_donation_amount') }}</label>
-                      <div class="col-sm-10">
-                        <input type="number" min="1" autocomplete="off" value="{{ $settings->max_donation_amount }}" name="max_donation_amount" class="form-control onlyNumber" placeholder="{{ trans('misc.max_donation_amount') }}">
-                      </div>
-                    </div>
-                  </div><!-- /.box-body -->
 
                   <div class="box-footer">
                     <button type="submit" class="btn btn-success">{{ trans('admin.save') }}</button>

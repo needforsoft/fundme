@@ -106,7 +106,7 @@
                       	{{ trans('misc.user_not_available') }}
                           @endif
                       	</td>
-                      <td>{{ App\Helper::amountFormat($campaign->goal) }}</td>
+                      <td>{{ App\Helper::amountFormat($campaign->goal, $campaign->currency_code) }}</td>
                       <td>@if($settings->currency_position == 'left'){{$settings->currency_symbol.$funds}}@else {{$funds.$settings->currency_symbol}} @endif</td>
                       <td>
                       	@if( $campaign->status == 'active' && $campaign->finalized == 0 )

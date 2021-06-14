@@ -12,7 +12,7 @@ $_image = 'default.jpg';
 
 <h1 class="title-services">
 	<a href="{{ url('category',$category->slug) }}">
-		{{ $category->name }} ({{$category->campaigns()->count()}})
+		{{ trans("category.".$category->slug) }} ({{$category->campaigns()->count()}})
 	</a>
 	</h1>
   </div><!-- col-md-3 row-margin-20 -->

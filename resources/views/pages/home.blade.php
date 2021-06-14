@@ -3,13 +3,13 @@
 @section('title') {{ $title }} @endsection
 
 @section('content')
-<div class="jumbotron md index-header jumbotron_set jumbotron-cover">
-	<div class="container wrap-jumbotron position-relative">
-		<h2 class="title-site">{{ $response->title }}</h2>
+<div class="index-header">
+	<div class="container position-relative">
+		<h2 class="title-site">@lang("page.".$response->slug)</h2>
 	</div>
 </div>
 
-<div class="container margin-bottom-40">
+<div class="container margin-bottom-40 margin-top-5">
 
 	<div class="row"></div>
 	<!-- Col MD -->
@@ -17,7 +17,7 @@
 
 		<ol class="breadcrumb bg-none">
 			<li><a href="{{ URL::to('/') }}"><i class="glyphicon glyphicon-home myicon-right"></i></a></li>
-			<li class="active">{{ $response->title }}</li>
+			<li class="active">@lang("page.".$response->slug)</li>
 		</ol>
 		<hr />
 

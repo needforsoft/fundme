@@ -6,10 +6,10 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h4>
-			{{ trans('admin.admin') }} <i class="fa fa-angle-right margin-separator"></i>
+			{{ trans('admin.admin') }}</i>
 			{{--{{ trans('admin.currencies') }} ({{$data->total()}})--}}
 
-			<a href="{{{ url('panel/admin/member/add') }}}" class="btn btn-sm btn-success no-shadow pull-right">
+			<a href="{{{ url('panel/admin/currencies/add') }}}" class="btn btn-sm btn-success no-shadow pull-right">
 				<i class="glyphicon glyphicon-plus myicon-right"></i> {{{ trans('misc.add_new') }}}
 			</a>
 
@@ -71,6 +71,10 @@
 								<tr>
 									<th class="active">{{ trans('admin.currency_code') }}</th>
 									<th class="active">{{ trans('admin.currency_symbol') }}</th>
+									<th class="active">{{ trans('admin.min_campaign_amount') }}</th>
+									<th class="active">{{ trans('misc.max_campaign_amount') }}</th>
+									<th class="active">{{ trans('admin.min_donation_amount') }}</th>
+									<th class="active">{{ trans('misc.max_donation_amount') }}</th>
 									<th class="active">{{ trans('admin.currency_symbol_position') }}</th>
 									<th class="active">{{ trans('admin.actions') }}</th>
 								</tr>
@@ -80,6 +84,10 @@
 									<td>{{ $currency->currency_code }}</td>
 									<td>{{ $currency->currency_symbol }}</td>
 									<td>{{ $currency->currency_symbol_position }}</td>
+									<td>{{ $currency->min_campaign_amount }}</td>
+									<td>{{ $currency->max_campaign_amount }}</td>
+									<td>{{ $currency->min_donation_amount }}</td>
+									<td>{{ $currency->max_donation_amount }}</td>
 									<td>
 
 										<a href="{{ url('panel/admin/currencies/edit/'.$currency->currency_code) }}"

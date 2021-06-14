@@ -74,7 +74,7 @@
 					<div class="form-group">
 						<label>{{ trans('misc.campaign_goal') }}</label>
 						<div class="input-group">
-							<div class="input-group-addon addon-dollar">{{$settings->currency_symbol}}</div>
+							<div id="addonCurrencySymbol" class="input-group-addon"></div>
 							<input type="number" min="1" class="form-control" name="goal" id="onlyNumber"
 								value="{{ old('goal') }}" placeholder="10000">
 						</div>
@@ -82,9 +82,9 @@
 
 					<div class="form-group">
 						<label>{{ trans('campaign.currency') }}</label>
-						<select name="campaign_currency" class="form-control">
+						<select id="campaign_currency" name="campaign_currency" class="form-control" onchange="onCampaignCurrencyChanged()">
 							@foreach( App\Models\Currency::all() as $curr )
-								<option value="{{ $curr->currency_code }}">{{ $curr->currency_code }} ({{ $curr->currency_symbol }})</option>
+						<option value="{{ $curr->currency_code }}" data-symbol="{{$curr->currency_symbol}}">{{ $curr->currency_code }} ({{ $curr->currency_symbol }})</option>
 							@endforeach
 						</select>
 					</div>
@@ -306,6 +306,13 @@ tinymce.init({
 }
 
 initTinymce();	
+
+function onCampaignCurrencyChanged()
+{
+	var curr = $("#campaign_currency option:selected").attr("data-symbol");
+	$("#addonCurrencySymbol").html(curr);
+}
+onCampaignCurrencyChanged();
 
 </script>
 @endsection

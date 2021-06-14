@@ -799,13 +799,21 @@ class AdminController extends Controller
 		$this->validate($request, [
 			'currency_code' => 'required|size:3',
 			'currency_symbol_position'     => 'required|in:right,left',
-			'currency_symbol' => 'required|max:1'
+			'currency_symbol' => 'required',
+			'min_compaign_amount' => 'required',
+			'max_campaign_amount' => 'required',
+			'min_donation_amount' => 'required',
+			'max_donation_amount' => 'required'
 		]);
 
 		$currency = new Currency();
 		$currency->currency_code = strtoupper($request->currency_code);
 		$currency->currency_symbol = $request->currency_symbol;
 		$currency->currency_symbol_position = $request->currency_symbol_position;
+		$currency->min_campaign_amount = $request->min_campaign_amount;
+		$currency->max_campaign_amount = $request->max_campaign_amount;
+		$currency->min_donation_amount = $request->min_donation_amount;
+		$currency->max_donation_amount = $request->max_donation_amount;
 		$currency->save();
 
 		return redirect('panel/admin/currencies');
@@ -823,6 +831,10 @@ class AdminController extends Controller
 
 		$currency->currency_symbol = $request->currency_symbol;
 		$currency->currency_symbol_position = $request->currency_symbol_position;
+		$currency->min_campaign_amount = $request->min_campaign_amount;
+		$currency->max_campaign_amount = $request->max_campaign_amount;
+		$currency->min_donation_amount = $request->min_donation_amount;
+		$currency->max_donation_amount = $request->max_donation_amount;
 		$currency->save();
 
 		\Session::flash('success_message', trans('admin.success_update'));

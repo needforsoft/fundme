@@ -345,6 +345,34 @@ class Helper
 		$thumbnail->save($name)->destroy();
 	}
 
+	public static function formatAmountLong($amount, $currenyCode)
+	{
+		return number_format($amount)." ".$currenyCode;
+	}
+
+	public static function formatAmountShort($amount, $curreny_code)
+	{
+		$curr = Currency::find($curreny_code);
+		return self::formatAmountByCurrency($amount, $curr);
+	}
+
+	public static function formatAmountByCurrency($amount, $currency, $short = true)
+	{
+		$result = "";
+		switch ($currency->currency_symbol_position) {
+			case "left": {
+					$result = $currency->currency_symbol . number_format($amount);
+					break;
+				}
+			case "right": {
+					$result = number_format($amount) . $currency->currency_symbol;
+					break;
+				}
+		}
+
+		return $result;
+	}
+
 	public static function amountFormatByCurrencyCode($value, $from_currency_code, $to_currency_code)
 	{
 		if ($to_currency_code != $from_currency_code) {

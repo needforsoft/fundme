@@ -34,7 +34,7 @@ $settings = App\Models\AdminSettings::first();
 
 		<div class="navbar-collapse collapse">
 
-			<ul class="nav navbar-nav navbar-right">
+			<ul class="nav navbar-nav navbar-left">
 
 				<li>
 					<a href="#search" class="text-uppercase font-default">
@@ -68,7 +68,7 @@ $settings = App\Models\AdminSettings::first();
 						@foreach( $categoriesMenu as $category )
 						<li @if(Request::path()=="category/$category->slug" ) class="active" @endif>
 							<a href="{{ url('category') }}/{{ $category->slug }}" class="text-overflow">
-								{{ $category->name }}
+								@lang("category.".$category->slug)
 							</a>
 						</li>
 						@endforeach
@@ -82,13 +82,9 @@ $settings = App\Models\AdminSettings::first();
 
 				</li><!-- Categories -->
 				@endif
+			</ul>
 
-				@foreach( \App\Models\Pages::where('show_navbar', '1')->get() as $_page )
-				<li @if(Request::is("page/$_page->slug")) class="active-navbar" @endif>
-					<a class="text-uppercase font-default" href="{{ url('page',$_page->slug) }}">{{ $_page->title }}</a>
-				</li>
-				@endforeach
-
+			<ul class="nav navbar-nav navbar-right">
 				@if(config("app.locales") != null)
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"

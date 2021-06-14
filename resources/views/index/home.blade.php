@@ -71,7 +71,7 @@ $total_members      = App\Models\User::count();
 @if( $categories->count() != 0 )
 <div class="container">
 
-			<div class="col-md-12 btn-block margin-bottom-40 head-home">
+			<div class="col-md-12 btn-block margin-bottom-20 head-home">
 				<h1 class="btn-block text-center class-montserrat margin-bottom-zero none-overflow">{{trans('misc.categories')}}</h1>
 				<h5 class="btn-block text-center class-montserrat subtitle-color">
 					<a href="{{ url('categories') }}">

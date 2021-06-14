@@ -203,8 +203,9 @@ return array(
 	'campaign_goal' => 'Campaign Goal',
 	'width_min'  =>  'The image must be greater than, or equal to :data px in width', // Not remove :data
 	'height_min'  =>  'The image must be greater than, or equal to :data px in height', // Not remove :data
-	'amount_minimum' => 'The minimum amount is :symbol:min :code', // Not remove :symbol:min and :code
-	'max_amount_minimum' => 'The maximum amount is :symbol:max :code', // Not remove :symbol:min and :code
+	'amount_min' => 'The minimum amount is :val', 
+	'amount_max' => 'The maximum amount is :val',
+	'amount_range' => 'The amount range is :val1 - :val2',
 	'description_required' => 'Please enter what is about your campaign',
 	'select_one' => 'Select One',
 	'please_select_category' => 'Please select a category',
@@ -349,9 +350,6 @@ return array(
 	'debit_credit_card' => 'Debit / Credit Card',
 
 	//<------------ Version 2.6 --------------->>
-	'amount_minimum2' => 'The minimum amount is :min:symbol :code', // Not remove :symbol:min and :code
-	'max_amount_minimum2' => 'The maximum amount is :max:symbol :code', // Not remove :symbol:min and :code
-	'amount_maximum2' => 'The maximum amount is :max:symbol :code', // Not remove :symbol:min and :code
 	'featured_campaigns' => 'Featured Campaigns',
 	'featured_campaigns_subtitle' => 'Campaigns selected by our team',
 
